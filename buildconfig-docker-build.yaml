@@ -1,0 +1,32 @@
+﻿apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: docker-build
+  namespace: poc
+  labels:
+    name: docker-build
+spec:
+  source:
+    type: Git
+    git:
+      uri: "https://github.com/vgonzalezo/openshift-angular-example"
+  strategy:
+    type: Docker
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: 'nginx:latest'
+        namespace: openshift
+      env:
+        - name: EXAMPLE
+          value: sample-app
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'origin-ruby-sample:latest'
+  postCommit:
+    args:
+      - bundle
+      - exec
+      - rake
+      - test
