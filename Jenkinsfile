@@ -1,5 +1,9 @@
 pipeline{
-  agent { label 'nodejs' }
+  agent { 
+    node {
+      label 'nodejs'
+    } 
+  }
   stages{
     stage ('checkout'){
       steps{
