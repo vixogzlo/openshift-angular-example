@@ -18,18 +18,6 @@ pipeline{
         '''
       }
     }
-    stage ('test'){
-      steps{
-        sh '''
-          $(npm bin)/ng test --watch=false --browsers Chrome_no_sandbox
-        '''
-      }
-      post {
-          always {
-            junit "test-results.xml"
-          }
-      }
-    }
     stage ('code quality'){
       steps{
         sh '$(npm bin)/ng lint'
