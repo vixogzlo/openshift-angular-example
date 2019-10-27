@@ -5,25 +5,26 @@ pipeline{
     } 
   }
   stages{
-    stage ('checkout'){
+    stage ('Checkout codigo fuente'){
       steps{
         checkout scm
       }
     }
-    stage ('install modules'){
+    stage ('Instalar dependencias'){
       steps{
         sh '''
+          npm config set registry http://nexus-santander-devops.apps.s0f1.xyz/repository/npm-proxy
           npm install --verbose -d 
           npm install --save classlist.js
         '''
       }
     }
-    stage ('code quality'){
+    stage ('Revisión calidad con LINT'){
       steps{
         sh '$(npm bin)/ng lint'
       }
     }
-    stage ('build') {
+    stage ('Construcción Aplicación') {
       steps{
         sh '$(npm bin)/ng build --prod --build-optimizer'
       }
