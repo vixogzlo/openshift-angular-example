@@ -29,7 +29,7 @@ pipeline{
         sh '$(npm bin)/ng build --prod --build-optimizer'
       }
     }
-    stage ('build image') {
+    stage ('Registrar Docker') {
       steps{
         sh '''
           rm -rf node_modules
@@ -37,5 +37,13 @@ pipeline{
         '''
       }
     }
+
+    stage('Desplegar') {
+      steps {
+        script {
+          openshift.selector("dc", "angular-5-example").rollout().latest();
+        }
+      }
+    } 
   }
 }
