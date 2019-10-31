@@ -33,7 +33,7 @@ pipeline{
       steps{
         sh '''
           rm -rf node_modules
-          oc start-build angular-5-example --from-dir=. --follow
+          oc start-build openshift-angular-example --from-dir=. --follow
         '''
       }
     }
@@ -41,7 +41,7 @@ pipeline{
     stage('Desplegar') {
       steps {
         script {
-          openshift.selector("dc", "angular-5-example").rollout().latest();
+          openshift.selector("dc", "openshift-angular-example").rollout().latest();
         }
       }
     } 
