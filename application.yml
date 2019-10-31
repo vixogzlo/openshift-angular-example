@@ -1,4 +1,3 @@
-
 apiVersion: v1
 items:
 - apiVersion: v1
@@ -8,8 +7,8 @@ items:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
     labels:
-      app: angular-5-example
-    name: angular-5-example
+      app: openshift-angular-example
+    name: openshift-angular-example
   spec:
     ports:
     - name: 8080-tcp
@@ -17,8 +16,8 @@ items:
       protocol: TCP
       targetPort: 8080
     selector:
-      app: angular-5-example
-      deploymentconfig: angular-5-example
+      app: openshift-angular-example
+      deploymentconfig: openshift-angular-example
     sessionAffinity: None
     type: ClusterIP
   status:
@@ -31,14 +30,14 @@ items:
     creationTimestamp: null
     generation: 1
     labels:
-      app: angular-5-example
-    name: angular-5-example
+      app: openshift-angular-example
+    name: openshift-angular-example
   spec:
     replicas: 1
     revisionHistoryLimit: 10
     selector:
-      app: angular-5-example
-      deploymentconfig: angular-5-example
+      app: openshift-angular-example
+      deploymentconfig: openshift-angular-example
     strategy:
       activeDeadlineSeconds: 21600
       resources: {}
@@ -55,11 +54,11 @@ items:
           openshift.io/generated-by: OpenShiftNewApp
         creationTimestamp: null
         labels:
-          app: angular-5-example
-          deploymentconfig: angular-5-example
+          app: openshift-angular-example
+          deploymentconfig: openshift-angular-example
       spec:
         containers:
-        - image: 172.30.1.1:5000/myproject/angular-5-example@sha256:0918cca166df1ea48b27b0d86f5c385613e1aa1e619ef628e6c8b134a64d0b65
+        - image: 172.30.1.1:5000/myproject/openshift-angular-example@sha256:0918cca166df1ea48b27b0d86f5c385613e1aa1e619ef628e6c8b134a64d0b65
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
@@ -81,7 +80,7 @@ items:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
-          name: angular-5-example
+          name: openshift-angular-example
           ports:
           - containerPort: 80
             protocol: TCP
@@ -101,10 +100,10 @@ items:
     - imageChangeParams:
         automatic: true
         containerNames:
-        - angular-5-example
+        - openshift-angular-example
         from:
           kind: ImageStreamTag
-          name: angular-5-example:latest
+          name: openshift-angular-example:latest
           namespace: myproject
       type: ImageChange
   status:
@@ -121,15 +120,15 @@ items:
       openshift.io/host.generated: "true"
     creationTimestamp: null
     labels:
-      app: angular-5-example
-    name: angular-5-example
+      app: openshift-angular-example
+    name: openshift-angular-example
   spec:
-    host: angular-5-example-myproject.192.168.42.56.nip.io
+    host: openshift-angular-example-myproject.192.168.42.56.nip.io
     port:
       targetPort: 8080-tcp
     to:
       kind: Service
-      name: angular-5-example
+      name: openshift-ang
       weight: 100
     wildcardPolicy: None
   status:
@@ -138,7 +137,7 @@ items:
       - lastTransitionTime: 2018-01-05T09:32:19Z
         status: "True"
         type: Admitted
-      host: angular-5-example-myproject.192.168.42.56.nip.io
+      host: openshift-angular-example-myproject.192.168.42.56.nip.io
       routerName: router
       wildcardPolicy: None
 kind: List
