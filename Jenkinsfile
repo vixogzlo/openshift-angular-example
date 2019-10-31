@@ -31,10 +31,9 @@ pipeline{
     }
     stage ('Registrar Docker') {
       steps{
-        sh '''
-          rm -rf node_modules
-          oc start-build openshift-angular-example --from-dir=. --follow
-        '''
+        script {
+          openshift.selector("bc", "openshift-angular-example").startBuild("--from-dir=./dist", "--wait=true", "--follow", "--loglevel=8")
+        }
       }
     }
 
