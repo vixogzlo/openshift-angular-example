@@ -32,7 +32,7 @@ pipeline{
     stage ('Registrar Docker') {
       steps{
         script {
-          openshift.selector("bc", "openshift-angular-example").startBuild("--from-dir=./dist", "--wait=true", "--follow", "--loglevel=8")
+          openshift.selector("bc", "angular-example").startBuild("--from-dir=./dist", "--wait=true", "--follow", "--loglevel=8")
         }
       }
     }
@@ -40,7 +40,7 @@ pipeline{
     stage('Desplegar') {
       steps {
         script {
-          openshift.selector("dc", "openshift-angular-example").rollout().latest();
+          openshift.selector("dc", "angular-example").rollout().latest();
         }
       }
     } 
