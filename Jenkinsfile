@@ -29,7 +29,7 @@ pipeline{
         sh '$(npm bin)/ng build --prod --build-optimizer'
       }
     }
-    stage ('Registrar Docker') {
+    stage ('Desplegar') {
       steps{
         script {
           openshift.withCluster() {
@@ -40,18 +40,6 @@ pipeline{
         }
       }
     }
-
-    stage('Desplegar') {
-      steps {
-        script {
-          openshift.withCluster() {
-            openshift.withProject('poc') {
-              openshift.selector("dc", "angular-example").rollout().latest();
-            }
-          }
-        }
-      }
-    } 
 
   }
 }
