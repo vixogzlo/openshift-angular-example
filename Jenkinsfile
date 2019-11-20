@@ -13,7 +13,6 @@ pipeline{
     stage ('Instalar dependencias'){
       steps{
         sh '''
-          npm config set registry http://nexus3-test1.apps.ocp.cl.bsch/repository/npm-proxy/
           npm install --verbose -d 
           npm install --save classlist.js
         '''
