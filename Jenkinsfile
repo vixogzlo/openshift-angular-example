@@ -13,7 +13,6 @@ pipeline{
     stage ('Instalar dependencias'){
       steps{
         sh '''
-          npm config set registry http://nexus-santander-devops.apps.s0f1.xyz/repository/npm-proxy
           npm install --verbose -d 
           npm install --save classlist.js
         '''
