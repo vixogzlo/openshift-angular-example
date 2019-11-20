@@ -32,7 +32,7 @@ pipeline{
       steps{
         script {
           openshift.withCluster() {
-            openshift.withProject('poc') {
+            openshift.withProject('test1') {
               openshift.selector("bc", "angular-example").startBuild("--from-dir=./dist/openshift-angular-example/", "--wait=true", "--follow", "--loglevel=8")
             }
           }
